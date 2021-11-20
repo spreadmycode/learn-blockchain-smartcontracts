@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "useUnknownInCatchVariables": false,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@figment-near/*": ["components/protocols/near/*"],
+      "@figment-polkadot/*": ["components/protocols/polkadot/*"],
+      "@figment-solana/*": ["components/protocols/solana/*"],
+      "@figment-celo/*": ["components/protocols/celo/*"],
+      "@figment-tezos/*": ["components/protocols/tezos/*"],
+      "@figment-avalanche/*": ["components/protocols/avalanche/*"],
+      "@figment-secret/*": ["components/protocols/secret/*"],
+      "@figment-polygon/*": ["components/protocols/polygon/*"],
+      "@figment-ceramic/*": ["components/protocols/ceramic/*"],
+      "@figment-the-graph/*": ["components/protocols/the_graph/*"]
+    },
+    "incremental": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js"],
+  "exclude": ["node_modules"]
+}
