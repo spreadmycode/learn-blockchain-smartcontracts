@@ -42,8 +42,10 @@ const Balance = () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const selectedAddress = window.ethereum.selectedAddress;
-      const selectedAddressBalance = undefined;
-      const balanceToDisplay = undefined;
+      const selectedAddressBalance = await provider.getBalance(selectedAddress);
+      const balanceToDisplay = ethers.utils.formatEther(
+        selectedAddressBalance.toString(),
+      );
       if (!balanceToDisplay) {
         throw new Error('Please complete the code');
       }

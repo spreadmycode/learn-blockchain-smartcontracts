@@ -31,15 +31,16 @@ const Getter = () => {
   }, [contractNumber, setContractNumber]);
 
   const getValue = async () => {
-    setFetching(true);
-    setContractNumber(null);
     try {
       setFetching(true);
+      setContractNumber(null);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // try to figure out the expected parameters
-      const contract = new ethers.Contract(undefined);
-      // try to figure out the expected method
-      const storage = undefined;
+      const contract = new ethers.Contract(
+        SimpleStorageJson.networks['80001'].address,
+        SimpleStorageJson.abi,
+        provider,
+      );
+      const storage = await contract.get();
       setContractNumber(storage.toString());
       setFetching(false);
     } catch (error) {

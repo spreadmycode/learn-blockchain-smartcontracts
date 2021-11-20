@@ -38,19 +38,16 @@ const Setter = () => {
   const setValue = async () => {
     setFetchingSet(true);
     setTxHash(null);
-
+  
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-
-    // Try to figure out the expected parameters
-    // @ts-ignore
-    const contract = new ethers.Contract(undefined);
-
+    const contract = new ethers.Contract(
+      SimpleStorageJson.networks['80001'].address,
+      SimpleStorageJson.abi,
+      signer,
+    );
     try {
-      // Try to figure out the expected method
-      // @ts-ignore
-      const transactionResult = undefined;
-
+      const transactionResult = await contract.set(inputNumber);
       setFetchingSet(false);
       setInputNumber(0);
       setConfirming(true);

@@ -21,23 +21,17 @@ const Restore = () => {
   const [value, setValue] = useState<string>('');
 
   const restore = () => {
-    setError(null);
     setAddress(null);
+    setSecret(null);
     try {
-      const wallet = undefined;
+      const wallet = ethers.Wallet.fromMnemonic(value.trim());
       const selectedAddress = window.ethereum.selectedAddress;
-      if (undefined === selectedAddress) {
-        setAddress(undefined);
-        setSecret(undefined);
+      if (wallet && wallet.address.toLocaleLowerCase() === selectedAddress) {
+        setAddress(wallet.address.toLocaleLowerCase());
+        setSecret(wallet.privateKey.toLocaleLowerCase());
       } else {
         setError('Unable to restore account');
       }
-      dispatch({
-        type: 'SetStepIsCompleted',
-        chainId: getCurrentChainId(state),
-        stepId: getCurrentStepIdForCurrentChain(state),
-        value: true,
-      });
     } catch (error) {
       setError('Invalid mnemonic');
     }
